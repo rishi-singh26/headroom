@@ -64,7 +64,7 @@ done_ "$HEADROOM_DIR"
 # ── 2. Write statusline.sh (initial — no notify.sh yet) ───────────────────────
 step "Writing hook script -> $HOOK_SCRIPT"
 cat > "$HOOK_SCRIPT" << 'HOOK_END'
-#!/bin/bash
+#!/usr/bin/env bash
 # statusline.sh — Claude Code statusLine hook
 # Saves Claude Code's session JSON to ~/.claude/headroom/headroom-usage.json
 input=$(cat)
@@ -246,7 +246,7 @@ printf '  Enter your brrr.now secret.\n'
 printf '  Find it in the brrr app — looks like: %sbr_usr_...%s\n' "$GRAY" "$RESET"
 printf '  Leave blank to skip.\n\n'
 printf '  Secret: '
-read -r BRRR_SECRET
+read -r BRRR_SECRET || true
 
 if [[ -z "$BRRR_SECRET" ]]; then
     warn "Skipped — re-run this script any time to add notifications"
@@ -270,7 +270,7 @@ PYEND
     # ── 7. Write notify.sh ────────────────────────────────────────────────────
     step "Writing usage threshold notifier -> $NOTIFY_SCRIPT"
     cat > "$NOTIFY_SCRIPT" << 'NOTIFY_END'
-#!/bin/bash
+#!/usr/bin/env bash
 # notify.sh — headroom background notification checker
 # Reads headroom-usage.json and sends brrr.now alerts at 80% and 90% thresholds.
 #
@@ -415,7 +415,7 @@ NOTIFY_END
     # ── 8. Write hook-notify.sh ───────────────────────────────────────────────
     step "Writing hook event notifier -> $HOOK_NOTIFY_SCRIPT"
     cat > "$HOOK_NOTIFY_SCRIPT" << 'HOOK_NOTIFY_END'
-#!/bin/bash
+#!/usr/bin/env bash
 # hook-notify.sh — Claude Code hook event -> brrr.now push notification
 #
 # Reads Claude Code's hook JSON from stdin, extracts context per event type,
@@ -484,7 +484,7 @@ def tool_summary():
     if tool_name == "WebSearch":
         return ti.get("query", "")
     if tool_name == "TodoWrite":
-        return f"{len(ti.get(\"todos\", []))} todo(s)"
+        return "{} todo(s)".format(len(ti.get("todos", [])))
     if tool_name.startswith("mcp__"):
         parts = tool_name.split("__")
         return (parts[1] if len(parts) > 1 else "") + " > " + (parts[2] if len(parts) > 2 else "")
@@ -625,7 +625,7 @@ PYEND
     # ── 10. Rewrite statusline.sh to also launch notify.sh ────────────────────
     step "Updating statusline.sh to launch notify.sh in background"
     cat > "$HOOK_SCRIPT" << 'HOOK_END'
-#!/bin/bash
+#!/usr/bin/env bash
 # statusline.sh — Claude Code statusLine hook
 input=$(cat)
 printf '%s' "$input" > "$HOME/.claude/headroom/headroom-usage.json"
