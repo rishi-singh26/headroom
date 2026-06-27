@@ -2,6 +2,8 @@
 
 Track your Claude Code usage from the terminal. Get push notifications when you're running low.
 
+![iOS](https://raw.githubusercontent.com/rishi-singh26/headroom/refs/heads/main/docs/clhead.png)
+
 ## What it does
 
 - Shows session (5h), weekly (7d), and context window usage with progress bars
