@@ -2,7 +2,11 @@
 
 Track your Claude Code usage from the terminal. Get push notifications when you're running low.
 
-![iOS](https://raw.githubusercontent.com/rishi-singh26/headroom/refs/heads/main/docs/clhead.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/rishi-singh26/headroom/refs/heads/main/docs/clhead-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/rishi-singh26/headroom/refs/heads/main/docs/clhead.png">
+  <img alt="iOS" src="https://raw.githubusercontent.com/rishi-singh26/headroom/refs/heads/main/docs/clhead.png">
+</picture>
 
 ## What it does
 
