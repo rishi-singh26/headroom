@@ -1,0 +1,9 @@
+.notify-state
+config.json
+headroom-usage.json
+headroom.sh
+hook-notify.log
+hook-notify.sh
+notify.log
+notify.sh
+statusline.sh
