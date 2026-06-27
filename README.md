@@ -15,6 +15,10 @@ Track your Claude Code usage from the terminal. Get push notifications when you'
 - Python 3
 - `curl` (for push notifications)
 
+## Compatibility
+
+Works on macOS (zsh) and Linux (bash). The setup script detects your shell automatically and adds aliases to the correct rc file (`~/.zshrc` or `~/.bashrc`). All generated scripts use `#!/usr/bin/env bash` and are compatible with both platforms.
+
 ## Setup
 
 ```bash
